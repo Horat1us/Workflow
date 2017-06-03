@@ -15,3 +15,4 @@ npm-debug.log
 !/public/css/.gitkeep
 !/public/js/.gitkeep
 !/public/fonts/.gitkeep
+_ide_helper.php
