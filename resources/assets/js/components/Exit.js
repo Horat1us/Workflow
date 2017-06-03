@@ -11,7 +11,8 @@ class Exit extends Component {
         axios.post('/api/logout')
             .then(() => {
                 // window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf;
-                this.context.router.history.push('/');
+                window.user = null;
+                this.context.router.history.push('/login');
             })
             .catch();
     }
