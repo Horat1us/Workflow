@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('{slug}', function () {
     return view('welcome');
-});
+})
+
+    ->where('slug', '(?!api)([A-z\d-\/_.]+)?');
+
+
+Route::get('/api/state', 'Auth\LoginController@state');
+Route::post('/api/login', 'Auth\LoginController@login');
+Route::post('/api/logout', 'Auth\LoginController@logout');

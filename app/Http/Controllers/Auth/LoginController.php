@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -34,6 +37,52 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'state']);
+    }
+
+    /**
+     * @return array
+     */
+    public function state()
+    {
+        $user = \Auth::user();
+        if ($user instanceof User) {
+            return [
+                'success' => true,
+                'user' => $user->asArray(),
+            ];
+        }
+        return [
+            'success' => true,
+            'user' => false,
+        ];
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return array
+     */
+    protected function authenticated(Request $request, User $user)
+    {
+        return [
+            'success' => true,
+            'user' => $user->asArray(),
+        ];
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response|JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        return $request->wantsJson()
+            ? \Response::json(['success' => true,])
+            : redirect('/');
     }
 }

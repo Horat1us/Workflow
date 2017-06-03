@@ -1,4 +1,6 @@
 const {mix} = require('laravel-mix');
+const webpack = require('webpack');
+
 
 /*
  |--------------------------------------------------------------------------
@@ -12,5 +14,13 @@ const {mix} = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
+    .webpackConfig({
+        plugins: [
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery',
+            })
+        ]
+    })
     .sourceMaps()
     .sass('resources/assets/sass/app.scss', 'public/css');

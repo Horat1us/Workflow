@@ -1,9 +1,13 @@
+body {
+  padding: 0;
+  margin: 0;
+}
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-// Variables
-@import "variables";
+// Font Awesome
+@import '~font-awesome/scss/font-awesome.scss';
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+// Material Design
+@import 'material-dashboard';

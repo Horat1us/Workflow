@@ -9,6 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+/public/mix-manifest.json
 /public/css/*
 /public/fonts/*
 /public/js/*
@@ -16,3 +17,4 @@ npm-debug.log
 !/public/js/.gitkeep
 !/public/fonts/.gitkeep
 _ide_helper.php
+.phpstorm.meta.php
