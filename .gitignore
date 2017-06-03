@@ -9,3 +9,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+/public/css/*
+/public/fonts/*
+/public/js/*
+!/public/css/.gitkeep
+!/public/js/.gitkeep
+!/public/fonts/.gitkeep
