@@ -16,8 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id');
-            $table->unsignedInteger('source_id');
-            $table->unsignedInteger('target_id');
+            $table->unsignedInteger('source');
+            $table->unsignedInteger('target');
             $table->decimal('price', 8, 2);
             $table->enum('status', [
                 'created',
@@ -38,15 +38,15 @@ class CreateOrdersTable extends Migration
                 ->onUpdate('cascade');
 
             $table
-                ->foreign('source_id')
-                ->references('id')
+                ->foreign('source')
+                ->references('code')
                 ->on('languages')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
 
             $table
-                ->foreign('target_id')
-                ->references('id')
+                ->foreign('target')
+                ->references('code')
                 ->on('languages')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');

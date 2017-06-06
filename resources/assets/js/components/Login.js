@@ -3,6 +3,7 @@ import moment from 'moment';
 import Alert from "./partials/Alert";
 import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import User from "../data/User";
 
 class Login extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class Login extends Component {
                 if(!('user' in data)) {
                     throw new Error("Wrong server answer format");
                 }
-                window.user = data.user;
+                window.user = new User(data.user);
                 this.context.router.history.push('/dashboard');
             })
             .catch(error => {

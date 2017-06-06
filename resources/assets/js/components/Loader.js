@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
+import User from "../data/User";
 
 const STATE_LOADING = 'loading';
 const STATE_UNKNOWN = 'login';
@@ -22,7 +23,7 @@ class Loader extends Component {
 
 
     authenticateUser({user}) {
-        window.user = user;
+        window.user = new User(user);
         this.setState({loggedIn: user ? STATE_DASHBOARD : STATE_UNKNOWN});
     }
 

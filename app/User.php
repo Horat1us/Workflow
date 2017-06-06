@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
  */
 class User extends Authenticatable
 {
@@ -56,6 +57,15 @@ class User extends Authenticatable
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'abilities' => $this->roles->map(function(Role $role) {
+                return $role->permission;
+            }),
         ];
     }
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
+
 }
